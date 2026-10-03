@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 )
 
 // file readFile
@@ -24,9 +25,25 @@ func readFile(filename string) error {
 	return nil
 }
 
+func processData(data []int) {
+	start := time.Now()
+	defer func() {
+		fmt.Println("process time:", time.Since(start))
+	}()
+
+	for _, value := range data {
+		fmt.Println(value)
+		time.Sleep(time.Millisecond * 100)
+	}
+}
+
 func main() {
 	err := readFile("output.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	data := []int{1, 2, 3, 4}
+	processData(data)
+
 }
