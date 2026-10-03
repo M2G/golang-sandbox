@@ -37,6 +37,16 @@ func processData(data []int) {
 	}
 }
 
+func safeOperation() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println("Recovered from panic", err)
+		}
+	}()
+	panic("Something went wrong")
+	fmt.Println("Cannot reach here")
+}
+
 func main() {
 	err := readFile("output.txt")
 	if err != nil {
@@ -45,5 +55,7 @@ func main() {
 
 	data := []int{1, 2, 3, 4}
 	processData(data)
+
+	safeOperation()
 
 }
