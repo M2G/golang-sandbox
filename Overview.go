@@ -6,6 +6,12 @@ import (
 )
 
 // GO 1.27
+
+type Track struct {
+	Title  string `json:"title"`
+	Second int    `json:"second"`
+}
+
 // generic method
 type Result[T any] struct {
 	val T
@@ -42,4 +48,8 @@ func main() {
 	if sessionId == uuid.MustParse("8be4df61-93ca-11d2-aa0d-00e098032b8c") {
 		fmt.Println("same session")
 	}
+
+	// JSON V2
+	out, err := json.Marshal(Track{Title: "Hello World", Second: 123})
+	fmt.Println(string(out), err)
 }
