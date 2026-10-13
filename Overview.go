@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"uuid"
+)
 
 // GO 1.27
 // generic method
@@ -24,4 +27,19 @@ func main() {
 
 	length := addr.Then(func(s string) int { return len(s) })
 	fmt.Println(addr.val, length.val)
+
+	// uuid pkg
+	fmt.Println(uuid.New())
+	fmt.Println(uuid.NewV4())
+	fmt.Println(uuid.NewV7())
+
+	sessionId := uuid.MustParse("8be4df61-93ca-11d2-aa0d-00e098032b8c")
+
+	fmt.Println("parsed:", sessionId)
+	fmt.Println("nil:", uuid.Nil())
+	fmt.Println("max:", uuid.Max())
+
+	if sessionId == uuid.MustParse("8be4df61-93ca-11d2-aa0d-00e098032b8c") {
+		fmt.Println("same session")
+	}
 }
